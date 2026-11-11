@@ -102,14 +102,7 @@ Sources: [AWS flat-rate pricing announcement](https://aws.amazon.com/blogs/netwo
 
 ## Pre-launch checklist
 
-- [ ] Company spelling: ALPFR (domain and page) or ALPHR (capability statement and its PDF)
 - [ ] Which of the six applications to show publicly, and whether any should link out
-- [ ] UEI and CAGE code
-- [ ] NAICS codes (541512, 541511, 541519 and 518210 are suggestions only)
-- [ ] Business type and small business certifications or set-asides
-- [ ] Certifications beyond CISSP
-- [ ] AWS partner status: confirm the tier or remove the line
-- [ ] Personnel clearances: add them or remove the line
 - [ ] Contact inbox: `info@alpfr.com` is a placeholder in the page script
 - [ ] Run `./deploy.sh --plan`; the configuration has not been run yet
 - [ ] Find where DNS for alpfr.com is managed and record the current records
