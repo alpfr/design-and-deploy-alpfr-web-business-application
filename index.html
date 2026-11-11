@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ALPFR Solutions | AI applications and cloud platforms for regulated industries</title>
+<meta name="description" content="ALPFR Solutions builds AI applications and the cloud platforms they run on, across AWS, Google Cloud and Azure, for financial services, healthcare, education and the public sector.">
+<meta property="og:title" content="ALPFR Solutions">
+<meta property="og:description" content="AI applications and multi-cloud platforms built to pass audit, for regulated industries.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.alpfr.com/">
+<link rel="canonical" href="https://www.alpfr.com/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..800&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0F2A47;      /* headings, nav, dark bands */
+  --slate:#465a70;    /* body text */
+  --paper:#EEF2F5;    /* page background */
+  --white:#FFFFFF;
+  --pass:#0B7F70;     /* "control passing" green-teal: actions and checks */
+  --pass-soft:#D6EEE9;
+  --line:#C9D3DC;
+  --flag:#F2C744;     /* marks content the owner still needs to confirm */
+  --display:"Archivo","Arial Narrow",Arial,sans-serif;
+  --body:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --wrap:72rem;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--slate);font:400 1.0625rem/1.6 var(--body);-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--display);color:var(--ink);margin:0;line-height:1.08}
+h1{font-size:clamp(2.4rem,5.4vw,4.25rem);font-weight:800;font-stretch:112%;letter-spacing:-.02em}
+h2{font-size:clamp(1.75rem,3.2vw,2.5rem);font-weight:700;font-stretch:110%;letter-spacing:-.01em}
+h3{font-size:1.1875rem;font-weight:700;font-stretch:105%;line-height:1.25}
+p{margin:0;max-width:62ch}
+a{color:var(--pass)}
+:focus-visible{outline:3px solid var(--pass);outline-offset:3px;border-radius:2px}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 1.5rem}
+.skip{position:absolute;left:-999px}
+.skip:focus{left:1rem;top:1rem;background:var(--white);padding:.5rem 1rem;z-index:10}
+
+/* header */
+.site-head{background:var(--paper);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+.site-head .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:4rem}
+.brand{font:800 1.25rem var(--display);font-stretch:120%;color:var(--ink);text-decoration:none;letter-spacing:.01em}
+.brand span{font-weight:400;font-stretch:100%}
+.site-nav{display:flex;gap:1.35rem;align-items:center;flex-wrap:wrap}
+.site-nav a{color:var(--ink);text-decoration:none;font-weight:500;font-size:.9375rem}
+.site-nav a:hover{text-decoration:underline;text-underline-offset:4px}
+.btn{display:inline-block;background:var(--pass);color:var(--white);font:600 1rem var(--body);padding:.8rem 1.35rem;border:0;border-radius:4px;text-decoration:none;cursor:pointer}
+.btn:hover{background:#086658}
+.site-nav .btn{color:var(--white);padding:.55rem 1rem;font-size:.9375rem}
+.site-nav .btn:hover{text-decoration:none}
+.btn-quiet{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink)}
+.btn-quiet:hover{background:var(--ink);color:var(--white)}
+
+/* hero */
+.hero{padding:4.5rem 0 5rem}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:3.5rem;align-items:center}
+.hero p{font-size:1.1875rem;margin:1.5rem 0 2rem;max-width:34rem}
+.hero-actions{display:flex;gap:.75rem;flex-wrap:wrap}
+
+/* control matrix: the signature element */
+.matrix{background:var(--white);border:1px solid var(--line);border-radius:6px;padding:1.25rem 1.25rem 1rem}
+.matrix table{width:100%;border-collapse:collapse;table-layout:fixed}
+.matrix caption{caption-side:bottom;text-align:left;font-size:.875rem;padding-top:.9rem;color:var(--slate)}
+.matrix th{font:700 .875rem var(--display);font-stretch:108%;color:var(--ink);text-align:left;padding:.5rem .4rem}
+.matrix thead th{border-bottom:2px solid var(--ink)}
+.matrix tbody th{width:22%}
+.matrix td{padding:.3rem .25rem;border-bottom:1px solid var(--paper)}
+.cell{display:block;font-size:.8125rem;line-height:1.25;padding:.5rem .5rem .5rem 1.55rem;border-radius:3px;background:var(--pass-soft);color:#0a4f46;position:relative;min-height:2.6rem}
+.cell::before{content:"";position:absolute;left:.5rem;top:.72rem;width:.42rem;height:.7rem;border:solid var(--pass);border-width:0 2px 2px 0;transform:rotate(42deg) scale(.9);transform-origin:center}
+@media (prefers-reduced-motion:no-preference){
+  .cell{animation:pass .45s both;animation-delay:calc(var(--i)*90ms + 300ms)}
+  @keyframes pass{from{background:var(--paper);color:transparent}to{background:var(--pass-soft);color:#0a4f46}}
+  .cell::before{animation:tick .3s both;animation-delay:calc(var(--i)*90ms + 480ms)}
+  @keyframes tick{from{opacity:0}to{opacity:1}}
+}
+
+/* sections */
+.band{padding:4.5rem 0}
+.band-white{background:var(--white)}
+.band-ink{background:var(--ink);color:#C6D3E0}
+.band-ink h2,.band-ink h3{color:var(--white)}
+.band-ink a{color:#7FE0D0}
+.lede{margin-top:1rem;font-size:1.125rem}
+
+.services{margin:2.75rem 0 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:4rem}
+.services div{padding:1.5rem 0;border-top:1px solid var(--line)}
+.services dt{font:700 1.1875rem var(--display);font-stretch:105%;color:var(--ink)}
+.services dd{margin:.4rem 0 0}
+
+.industries{list-style:none;margin:2.5rem 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2rem}
+.industries li{border-left:3px solid var(--pass);padding-left:1rem}
+.industries p{font-size:.9688rem;margin-top:.4rem}
+
+.products{margin-top:2.5rem;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.25rem}
+.product{background:var(--white);border:1px solid var(--line);border-radius:6px;padding:1.5rem}
+.product p{font-size:.9688rem;margin-top:.5rem}
+.product .field{margin:0 0 .35rem;font-size:.875rem;font-weight:600;color:var(--pass)}
+.product .runs{margin-top:1rem;padding-top:.75rem;border-top:1px solid var(--line);font-size:.875rem;color:var(--ink);font-weight:500}
+.product{display:flex;flex-direction:column}
+.product .runs{margin-top:auto}
+.product p:not(.field):not(.runs){margin-bottom:1rem}
+
+.caps{margin-top:2.5rem;display:grid;grid-template-columns:1.2fr 1fr;gap:3.5rem}
+.caps ul{margin:.75rem 0 0;padding-left:1.1rem}
+.caps li{margin:.3rem 0}
+.facts{margin:0;border-top:1px solid rgba(255,255,255,.25)}
+.facts div{display:flex;justify-content:space-between;gap:1.5rem;padding:.7rem 0;border-bottom:1px solid rgba(255,255,255,.25)}
+.facts dt{color:var(--white);font-weight:600}
+.facts dd{margin:0;text-align:right;max-width:60%}
+
+.teaming{margin-top:2.5rem;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2.5rem}
+.teaming > div{border-top:2px solid var(--ink);padding-top:1rem}
+.teaming ul{margin:.75rem 0 0;padding-left:1.1rem}
+.teaming li{margin:.35rem 0}
+.about{display:grid;grid-template-columns:1fr 1.3fr;gap:3.5rem;align-items:start}
+.about p + p{margin-top:1rem}
+
+.contact{display:grid;grid-template-columns:1fr 1.1fr;gap:3.5rem;align-items:start}
+form{display:grid;gap:1rem}
+label{display:grid;gap:.35rem;font-weight:600;color:var(--ink);font-size:.9375rem}
+input,select,textarea{font:400 1rem var(--body);color:var(--ink);padding:.7rem .8rem;border:1px solid #8fa0b1;border-radius:4px;background:var(--white);width:100%}
+textarea{min-height:8rem;resize:vertical}
+.form-note{font-size:.875rem}
+
+.confirm{background:var(--flag);color:#3b2f00;padding:0 .3rem;border-radius:2px;font-weight:500}
+
+footer{border-top:1px solid var(--line);padding:2rem 0;font-size:.9063rem}
+footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+
+@media (max-width:60rem){
+  .hero .wrap,.caps,.about,.contact,.teaming{grid-template-columns:1fr;gap:2.5rem}
+  .industries{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .products{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:40rem){
+  .site-nav a:not(.btn){display:none}
+  .services{grid-template-columns:1fr}
+  .products{grid-template-columns:1fr}
+  .industries{grid-template-columns:1fr}
+  .hero{padding:3rem 0 3.5rem}
+  .band{padding:3.25rem 0}
+  .matrix{padding:.75rem}
+  .cell{font-size:.75rem;padding-left:.5rem}
+  .cell::before{display:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="#top">ALPFR <span>Solutions</span></a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="#services">Services</a>
+      <a href="#industries">Industries</a>
+      <a href="#products">Our work</a>
+      <a href="#capabilities">Capabilities</a>
+      <a href="#partners">Partners</a>
+      <a href="#about">About</a>
+      <a class="btn" href="#contact">Book a consultation</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <h1>Cloud platforms that pass the audit</h1>
+      <p>ALPFR Solutions builds AI applications and the cloud platforms they run on, across AWS, Google Cloud and Azure, for organizations that answer to a regulator.</p>
+      <div class="hero-actions">
+        <a class="btn" href="#contact">Book a consultation</a>
+        <a class="btn btn-quiet" href="#capabilities">Read our capabilities</a>
+      </div>
+    </div>
+
+    <div class="matrix">
+      <table>
+        <caption>One set of controls, applied the same way on every cloud you run.</caption>
+        <thead>
+          <tr><th scope="col"><span class="skip">Cloud</span></th><th scope="col">Identity</th><th scope="col">Network</th><th scope="col">Audit</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">AWS EKS</th>
+            <td><span class="cell" style="--i:0">IAM roles for service accounts</span></td>
+            <td><span class="cell" style="--i:1">Istio mutual TLS</span></td>
+            <td><span class="cell" style="--i:2">CloudTrail, CloudWatch</span></td></tr>
+          <tr><th scope="row">Google GKE</th>
+            <td><span class="cell" style="--i:3">Workload Identity</span></td>
+            <td><span class="cell" style="--i:4">Istio mutual TLS</span></td>
+            <td><span class="cell" style="--i:5">Cloud Audit Logs</span></td></tr>
+          <tr><th scope="row">Azure AKS</th>
+            <td><span class="cell" style="--i:6">Entra Workload ID</span></td>
+            <td><span class="cell" style="--i:7">Istio mutual TLS</span></td>
+            <td><span class="cell" style="--i:8">Azure Monitor</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="band band-white" id="services">
+  <div class="wrap">
+    <h2>What we do</h2>
+    <p class="lede">End-to-end IT services, from the first migration plan to day-two operations, with security and compliance evidence built in from the start.</p>
+    <dl class="services">
+      <div><dt>Cloud migration</dt><dd>Move existing applications and infrastructure to the cloud with a plan your security team has already signed off on.</dd></div>
+      <div><dt>Kubernetes platform engineering</dt><dd>Production clusters on EKS, GKE and AKS with service mesh, workload identity and policy applied consistently across all three.</dd></div>
+      <div><dt>AI application development</dt><dd>We design and build AI applications: document analysis, search over your own data, triage assistants, and compliance checks for AI itself.</dd></div>
+      <div><dt>Multi-cloud AI deployment</dt><dd>We deploy and operate those applications on AWS, Google Cloud and Azure, under the same controls as the rest of your estate, so you can run each workload where it fits best.</dd></div>
+      <div><dt>DevSecOps and automation</dt><dd>Infrastructure as code and delivery pipelines that test, scan and record every change before it reaches production.</dd></div>
+      <div><dt>Security and compliance engineering</dt><dd>Turn frameworks such as SOC 2 and NIST into working controls: MFA, encryption in transit, logging, web application firewalls.</dd></div>
+      <div><dt>Managed operations</dt><dd>We run your infrastructure day to day: monitoring, patching, incident response and cost reviews.</dd></div>
+      <div><dt>Software engineering and QA</dt><dd>Requirements analysis, system design, development, integration and quality assurance for complex applications.</dd></div>
+      <div><dt>Staffing and procurement</dt><dd>Direct hires, contract engineers and fixed-price teams, plus sourcing of the IT equipment and supplies a project needs.</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section class="band" id="industries">
+  <div class="wrap">
+    <h2>Built for regulated industries</h2>
+    <ul class="industries">
+      <li><h3>Financial services</h3><p>Trading, payments and reporting systems where every change needs an audit trail.</p></li>
+      <li><h3>Healthcare and life sciences</h3><p>Platforms that keep patient data private and available.</p></li>
+      <li><h3>Education</h3><p>Reliable, affordable cloud for institutions with small teams.</p></li>
+      <li><h3>Public sector</h3><p>Cloud transformation for agencies and the contractors that serve them.</p></li>
+    </ul>
+  </div>
+</section>
+
+<section class="band band-white" id="products">
+  <div class="wrap">
+    <h2>AI applications we have built</h2>
+    <p class="lede">Six applications, each deployed on the cloud that suited it: AWS, Google Cloud or Azure. <span class="confirm">Confirm which to show publicly</span></p>
+    <div class="products">
+      <article class="product">
+        <p class="field">AI governance</p>
+        <h3>AI Governance Dashboard</h3>
+        <p>Checks AI systems against the EU AI Act, Colorado SB 24-205 and NIST guidance, blocks prohibited uses before release, and keeps an audit trail for risk and privacy officers.</p>
+        <p class="runs">Runs on Google Cloud Run and GKE</p>
+      </article>
+      <article class="product">
+        <p class="field">Legal</p>
+        <h3>ClauseGuard AI</h3>
+        <p>Audits contracts for risk from your side of the table, whether you are the vendor or the buyer, and produces redlines and an executive report.</p>
+        <p class="runs">Runs on Amazon EKS</p>
+      </article>
+      <article class="product">
+        <p class="field">Real estate</p>
+        <h3>AppraisalCopilot</h3>
+        <p>Reads deeds and appraisal documents, analyzes comparable sales and drafts valuations for commercial and residential property.</p>
+        <p class="runs">Runs on Azure AKS</p>
+      </article>
+      <article class="product">
+        <p class="field">Healthcare</p>
+        <h3>AnonyHealth</h3>
+        <p>A privacy-first triage service: a confidential AI symptom checker with emergency red-flag screening, a provider directory and health history.</p>
+        <p class="runs">Runs on Google Cloud Run</p>
+      </article>
+      <article class="product">
+        <p class="field">Enterprise search</p>
+        <h3>Prism Search</h3>
+        <p>Ask questions in plain English across documents, images, audio and video, and get answers grounded in your own data.</p>
+        <p class="runs">Runs on Google Cloud Run</p>
+      </article>
+      <article class="product">
+        <p class="field">Long-term care</p>
+        <h3>NexusLTC</h3>
+        <p>An electronic health record for post-acute and long-term care, designed around HL7 FHIR interoperability and full audit logging.</p>
+        <p class="runs">Runs on Amazon EKS</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="band band-ink" id="capabilities">
+  <div class="wrap">
+    <h2>Capabilities statement</h2>
+    <div class="caps">
+      <div>
+        <h3>Core competencies</h3>
+        <ul>
+          <li>Cloud migration, hybrid solutions and cloud-native development</li>
+          <li>AI application development and multi-cloud deployment</li>
+          <li>Kubernetes platforms on AWS, Google Cloud and Azure</li>
+          <li>Infrastructure design, deployment and day-to-day operations</li>
+          <li>Network architecture, installation and management</li>
+          <li>Software engineering, system integration and QA</li>
+          <li>Requirements analysis, system design documentation and technical data support</li>
+          <li>Technology evaluation and selection</li>
+          <li>Training support</li>
+          <li>IT and general procurement</li>
+        </ul>
+        <p style="margin-top:1.5rem"><a href="capabilities-statement.pdf">Download the capabilities statement (PDF)</a></p>
+      </div>
+      <dl class="facts">
+        <div><dt>UEI</dt><dd><span class="confirm">add</span></dd></div>
+        <div><dt>CAGE code</dt><dd><span class="confirm">add</span></dd></div>
+        <div><dt>NAICS codes</dt><dd><span class="confirm">541512, 541511, 541519, 518210 (suggested)</span></dd></div>
+        <div><dt>Clients</dt><dd>Commercial, federal, state and local government</dd></div>
+        <div><dt>Engagement models</dt><dd>Direct hire, contingent, fixed price</dd></div>
+        <div><dt>Customer retention</dt><dd>Over 98%</dd></div>
+        <div><dt>Alliances</dt><dd>Dell, IBM, VMware, Hitachi, HP, Oracle, Microsoft</dd></div>
+        <div><dt>Business type</dt><dd><span class="confirm">add set-asides, if any</span></dd></div>
+        <div><dt>Certifications</dt><dd><span class="confirm">CISSP; add others</span></dd></div>
+        <div><dt>Partner status</dt><dd><span class="confirm">AWS partner tier, if current</span></dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="partners">
+  <div class="wrap">
+    <h2>For prime contractors</h2>
+    <p class="lede">ALPFR Solutions joins larger teams as a subcontractor or teaming partner. We take on the cloud, Kubernetes and AI work packages and deliver them with the compliance evidence your contract requires.</p>
+    <div class="teaming">
+      <div>
+        <h3>Where we fit on your team</h3>
+        <ul>
+          <li>AI application development and deployment workstreams</li>
+          <li>Kubernetes platforms on AWS, Google Cloud and Azure</li>
+          <li>Security control implementation and audit evidence</li>
+          <li>Cloud migration and day-to-day operations</li>
+          <li>Engineers to cover a surge or a hard-to-fill role</li>
+        </ul>
+      </div>
+      <div>
+        <h3>How we engage</h3>
+        <ul>
+          <li>Subcontract or teaming agreement</li>
+          <li>Fixed-price work packages</li>
+          <li>Contract engineers placed on your team</li>
+          <li>Direct-hire placement</li>
+        </ul>
+      </div>
+      <div>
+        <h3>What you can verify</h3>
+        <ul>
+          <li>Registration: <span class="confirm">UEI and CAGE code</span></li>
+          <li>Small business status: <span class="confirm">add certifications or set-asides</span></li>
+          <li>Personnel clearances: <span class="confirm">add, or remove this line</span></li>
+          <li>Working applications on all three clouds, listed under <a href="#products">our work</a></li>
+          <li><a href="capabilities-statement.pdf">Capabilities statement (PDF)</a></li>
+        </ul>
+      </div>
+    </div>
+    <p style="margin-top:2.25rem"><a class="btn" href="#contact" data-topic="A contract or teaming opportunity">Discuss a teaming opportunity</a></p>
+  </div>
+</section>
+
+<section class="band band-white" id="about">
+  <div class="wrap about">
+    <h2>About ALPFR Solutions</h2>
+    <div>
+      <p>ALPFR Solutions is an IT services firm founded by a team of IT professionals with decades of experience. We serve commercial clients and federal, state and local governments with project-based work in IT engineering, infrastructure deployment, assessment and analysis, and application development.</p>
+      <p>Most of our customers come to us by referral, and more than 98% stay. Our partnerships with Dell, IBM, VMware, Hitachi, HP, Oracle and Microsoft give our clients direct access to subject matter experts inside each vendor.</p>
+      <p>We have learned that security reviews go faster when the evidence is produced by the platform itself, so that is how we build.</p>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="contact">
+  <div class="wrap contact">
+    <div>
+      <h2>Book a consultation</h2>
+      <p class="lede">Tell us what you are running and what you need it to do. We reply within two business days.</p>
+      <p style="margin-top:1.5rem">Or email <a id="mail-link" href="#"></a></p>
+    </div>
+    <form id="contact-form">
+      <label>Name <input name="name" autocomplete="name" required></label>
+      <label>Work email <input name="email" type="email" autocomplete="email" required></label>
+      <label>Organization <input name="org" autocomplete="organization"></label>
+      <label>What do you need help with?
+        <select name="topic">
+          <option>Cloud migration</option>
+          <option>Kubernetes platform</option>
+          <option>AI application development</option>
+          <option>Multi-cloud AI deployment</option>
+          <option>Security and compliance</option>
+          <option>Managed operations</option>
+          <option>A contract or teaming opportunity</option>
+          <option>Something else</option>
+        </select>
+      </label>
+      <label>Details <textarea name="details" required></textarea></label>
+      <button class="btn" type="submit">Send consultation request</button>
+      <p class="form-note">This opens your email app with the request filled in.</p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>&copy; <span id="year"></span> ALPFR Solutions</span>
+    <span><a href="#top">Back to top</a></span>
+  </div>
+</footer>
+
+<script>
+// CONFIRM: set the public inbox for consultation requests.
+var CONTACT_EMAIL = "info@alpfr.com";
+
+// Links with data-topic preselect the matching topic in the contact form.
+// Opening the page as alpfr.com/?topic=teaming#contact does the same.
+var topicSelect = document.querySelector('select[name="topic"]');
+document.querySelectorAll("[data-topic]").forEach(function (a) {
+  a.addEventListener("click", function () { topicSelect.value = a.dataset.topic; });
+});
+if (/[?&]topic=teaming/.test(location.search)) topicSelect.value = "A contract or teaming opportunity";
+
+document.getElementById("year").textContent = new Date().getFullYear();
+var mail = document.getElementById("mail-link");
+mail.textContent = CONTACT_EMAIL;
+mail.href = "mailto:" + CONTACT_EMAIL;
+
+// Static hosting has no server, so the form hands off to the visitor's email app.
+// To send without an email app, replace this with a POST to API Gateway + Lambda + SES.
+document.getElementById("contact-form").addEventListener("submit", function (e) {
+  e.preventDefault();
+  var f = new FormData(e.target);
+  var body = "Name: " + f.get("name") + "\nEmail: " + f.get("email") +
+    "\nOrganization: " + (f.get("org") || "-") + "\nTopic: " + f.get("topic") +
+    "\n\n" + f.get("details");
+  location.href = "mailto:" + CONTACT_EMAIL +
+    "?subject=" + encodeURIComponent("Consultation request: " + f.get("topic")) +
+    "&body=" + encodeURIComponent(body);
+});
+</script>
+</body>
+</html>
